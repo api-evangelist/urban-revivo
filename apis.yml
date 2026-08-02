@@ -1,9 +1,29 @@
 aid: urban-revivo
 name: Urban Revivo
-description: 'Urban Revivo is a company surfaced as a portfolio company of hongshan and added to the API
-  Evangelist network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment
-  pipeline.'
+description: >-
+  Urban Revivo is a fast-fashion retailer founded in 2006 in Guangzhou, selling
+  runway-inspired womenswear, menswear, and accessories through stores across
+  Asia and Europe and a global e-commerce storefront, with design centers in
+  London, Shanghai, and Guangzhou. Its global online store runs on Shopify and
+  exposes an agent-ready commerce surface: a published llms.txt/agents.md agent
+  guide, a Universal Commerce Protocol (UCP) merchant profile at /.well-known/ucp,
+  and an MCP shopping endpoint offering catalog search, cart, and buyer-approved
+  checkout tools, with customer identity brokered by Shopify customer accounts
+  over OpenID Connect. Urban Revivo is backed by HongShan (Sequoia China).
 url: https://raw.githubusercontent.com/api-evangelist/urban-revivo/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://global.urbanrevivo.com/cdn/shop/files/990_1_441fc199-d6cf-46a2-8360-121151cad8d2_1200x1200.jpg?v=1627871035
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -12,13 +32,77 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Consumer
-apis: []
+- Fashion
+- Retail
+- eCommerce
+- Apparel
+- Agentic Commerce
+apis:
+- name: Urban Revivo UCP Shopping (MCP)
+  description: >-
+    Agent-driven shopping surface for the Urban Revivo global store, declared in
+    the store's UCP merchant profile and llms.txt. Exposes MCP tools for catalog
+    search, cart creation, and checkout (create/update/complete), with checkout
+    completion always requiring explicit buyer approval. Provided natively by
+    the Shopify platform the store runs on.
+  humanURL: https://global.urbanrevivo.com/llms.txt
+  baseURL: https://urbanrevivointl.myshopify.com/api/ucp/mcp
+  tags:
+  - Shopping
+  - Commerce
+  - MCP
+  - UCP
+  properties:
+  - type: Documentation
+    url: https://global.urbanrevivo.com/llms.txt
+  - type: MCPServer
+    url: mcp/urban-revivo-mcp.yml
+common:
+- type: Website
+  url: https://global.urbanrevivo.com/
+- type: About
+  url: https://global.urbanrevivo.com/pages/about-urban-revivo-hp0036
+- type: Support
+  url: https://global.urbanrevivo.com/pages/contact-support
+- type: FAQ
+  url: https://global.urbanrevivo.com/pages/faq
+- type: Login
+  url: https://global.urbanrevivo.com/account/login
+- type: TermsOfService
+  url: https://global.urbanrevivo.com/policies/terms-of-service
+- type: PrivacyPolicy
+  url: https://global.urbanrevivo.com/policies/privacy-policy
+- type: Instagram
+  url: https://www.instagram.com/urbanrevivo/
+- type: Facebook
+  url: https://www.facebook.com/urbanrevivo.global
+- type: TikTok
+  url: https://www.tiktok.com/@urbanrevivo_official
+- type: LLMsTxt
+  url: llms/urban-revivo-llms.txt
+- type: WellKnown
+  url: well-known/urban-revivo-well-known.yml
+- type: MCPServer
+  url: mcp/urban-revivo-mcp.yml
+- type: Authentication
+  url: authentication/urban-revivo-authentication.yml
+- type: OAuthScopes
+  url: scopes/urban-revivo-scopes.yml
+- type: Conformance
+  url: conformance/urban-revivo-conformance.yml
+- type: DomainSecurity
+  url: security/urban-revivo-domain-security.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v1

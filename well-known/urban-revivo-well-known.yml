@@ -1,0 +1,71 @@
+generated: '2026-07-21'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for the Urban Revivo
+  web hosts. Status is the HTTP code observed at fetch time. The global
+  storefront (global.urbanrevivo.com) is a Shopify store and publishes real
+  OIDC discovery + OAuth authorization-server metadata (Shopify customer
+  accounts issuer) and a Universal Commerce Protocol (UCP) merchant profile at
+  /.well-known/ucp, plus an agent-facing /llms.txt (mirrored at /agents.md).
+  The apex urbanrevivo.com answered 503 on every probed path at fetch time;
+  www.urbanrevivo.com 301-redirects to global.urbanrevivo.com.
+hosts:
+  - host: https://global.urbanrevivo.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 200
+        type: application/json
+        file: urban-revivo-openid-configuration.json
+        note: Shopify customer-accounts OIDC discovery (issuer shopify.com/authentication/50476449942); scopes include customer-account-api:full and customer-account-mcp-api:full.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        type: application/json
+        file: urban-revivo-oauth-authorization-server.json
+        note: RFC 8414 metadata; identical payload to the OIDC discovery document.
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/ucp
+        status: 200
+        type: application/json
+        file: urban-revivo-ucp.json
+        note: Universal Commerce Protocol merchant profile (versions 2026-04-08, 2026-01-23); MCP shopping endpoint at https://urbanrevivointl.myshopify.com/api/ucp/mcp with cart/checkout/fulfillment/discount/order/catalog capabilities.
+      - path: /llms.txt
+        status: 200
+        type: text/markdown
+        file: ../llms/urban-revivo-llms.txt
+        note: Agent instructions for the store; also served at /agents.md.
+  - host: https://www.urbanrevivo.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 301
+        note: Redirects to global.urbanrevivo.com.
+      - path: /.well-known/openid-configuration
+        status: 200
+        note: Same Shopify OIDC discovery document as global.urbanrevivo.com; not saved separately.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        note: Same payload as global.urbanrevivo.com; not saved separately.
+      - path: /.well-known/api-catalog
+        status: 301
+      - path: /.well-known/ai-plugin.json
+        status: 301
+      - path: /llms.txt
+        status: 301
+  - host: https://urbanrevivo.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 503
+      - path: /.well-known/openid-configuration
+        status: 503
+      - path: /.well-known/oauth-authorization-server
+        status: 503
+      - path: /.well-known/api-catalog
+        status: 503
+      - path: /.well-known/ai-plugin.json
+        status: 503
+      - path: /llms.txt
+        status: 503

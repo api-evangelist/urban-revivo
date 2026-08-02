@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://global.urbanrevivo.com/llms.txt
+description: >-
+  Urban Revivo's global Shopify storefront publishes an agent-facing commerce
+  surface via the Universal Commerce Protocol (UCP). The store's /llms.txt
+  (mirrored at /agents.md) documents an MCP shopping endpoint, and the UCP
+  merchant profile at /.well-known/ucp (saved at
+  well-known/urban-revivo-ucp.json) declares the dev.ucp.shopping service over
+  MCP transport with cart, checkout, fulfillment, discount, order, and catalog
+  search/lookup capabilities (UCP versions 2026-04-08 and 2026-01-23). A live
+  POST tools/list to the endpoint answers JSON-RPC (it requires an agent
+  profile before listing tools: error -32001 "UCP discovery failed /
+  invalid_profile_url" without one). Checkout completion always requires
+  explicit buyer approval; the store recommends the cross-store Shop skill
+  (https://shop.app/SKILL.md) for personal shopping agents.
+server:
+  name: urban-revivo-ucp-shopping
+  transport: mcp
+  url: https://urbanrevivointl.myshopify.com/api/ucp/mcp
+  alt_url: https://global.urbanrevivo.com/api/ucp/mcp
+  protocol: ucp
+  ucp_profile: well-known/urban-revivo-ucp.json
+  schema: https://ucp.dev/2026-04-08/services/shopping/mcp.openrpc.json
+  auth: agent-profile + buyer-approved checkout (Shopify customer accounts OIDC; scope customer-account-mcp-api:full)
+tools:
+  - name: search_catalog
+    description: Search the store catalog for products matching the buyer's intent.
+    source: https://global.urbanrevivo.com/llms.txt
+  - name: create_cart
+    description: Create a cart and add desired items.
+    source: https://global.urbanrevivo.com/llms.txt
+  - name: create_checkout
+    description: Start the purchase flow for a cart.
+    source: https://global.urbanrevivo.com/llms.txt
+  - name: update_checkout
+    description: Set shipping address and fulfillment method on a checkout.
+    source: https://global.urbanrevivo.com/llms.txt
+  - name: complete_checkout
+    description: Finalize the purchase (buyer must approve payment).
+    source: https://global.urbanrevivo.com/llms.txt

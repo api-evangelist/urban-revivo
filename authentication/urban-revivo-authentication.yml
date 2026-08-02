@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: searched
+source: https://global.urbanrevivo.com/.well-known/openid-configuration
+description: >-
+  Authentication profile for Urban Revivo's agent/customer-facing surface,
+  captured from the live OIDC discovery and OAuth authorization-server
+  metadata published on the global Shopify storefront (saved verbatim in
+  well-known/). Customer and agent access is brokered by Shopify customer
+  accounts (issuer shopify.com/authentication/50476449942) using OAuth 2.0
+  authorization-code with PKCE; the UCP MCP shopping endpoint additionally
+  requires an agent profile and buyer-approved checkout.
+summary:
+  types: [oauth2, openIdConnect]
+  oauth2_flows: [authorizationCode]
+  pkce: S256
+  grant_types: [authorization_code, refresh_token, 'urn:ietf:params:oauth:grant-type:jwt-bearer']
+schemes:
+  - name: shopify-customer-accounts-oidc
+    type: openIdConnect
+    issuer: https://shopify.com/authentication/50476449942
+    openIdConnectUrl: https://global.urbanrevivo.com/.well-known/openid-configuration
+    authorizationUrl: https://shopify.com/authentication/50476449942/oauth/authorize
+    tokenUrl: https://shopify.com/authentication/50476449942/oauth/token
+    jwksUri: https://shopify.com/authentication/50476449942/.well-known/jwks.json
+    token_endpoint_auth_methods: [client_secret_basic]
+    scopes:
+      - openid
+      - email
+      - customer-account-api:full
+      - customer-account-mcp-api:full
+    sources:
+      - well-known/urban-revivo-openid-configuration.json
+      - well-known/urban-revivo-oauth-authorization-server.json

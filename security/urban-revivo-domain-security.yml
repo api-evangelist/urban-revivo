@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: global.urbanrevivo.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  4 14:47:33 2026 GMT
+  hsts: true
+  hsts_max_age: 7889238
+domains:
+- domain: urbanrevivo.com
+  dnssec: true
+  caa:
+  - alb-6t9bperiqxmkyjlfb9.ap-southeast-1.alb.aliyuncsslbintl.com.
+  spf: true
+  dmarc: true
+  dmarc_policy: none

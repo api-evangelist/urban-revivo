@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: searched
+description: >-
+  Cross-cutting standards Urban Revivo's agent-facing storefront surface
+  conforms to, evidenced by live documents fetched from
+  global.urbanrevivo.com (saved in well-known/ and llms/). The store runs on
+  Shopify, which supplies the OAuth/OIDC and UCP conformance.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: RFC 8414 authorization-server metadata published at /.well-known/oauth-authorization-server (well-known/urban-revivo-oauth-authorization-server.json); authorization_code + refresh_token + jwt-bearer grants.
+  - id: oidc
+    conforms: true
+    evidence: OIDC discovery document at /.well-known/openid-configuration (well-known/urban-revivo-openid-configuration.json); RS256 ID tokens, standard claims.
+  - id: oauth2-pkce
+    conforms: true
+    evidence: code_challenge_methods_supported [S256] in the discovery document.
+  - id: ucp
+    conforms: true
+    evidence: Universal Commerce Protocol merchant profile at /.well-known/ucp (well-known/urban-revivo-ucp.json), versions 2026-04-08 and 2026-01-23, with shopping service over MCP transport and checkout/cart/fulfillment/discount/order/catalog capabilities.
+  - id: mcp
+    conforms: true
+    evidence: dev.ucp.shopping service declared with transport mcp at https://urbanrevivointl.myshopify.com/api/ucp/mcp; endpoint answers JSON-RPC 2.0.
+  - id: llms-txt
+    conforms: true
+    evidence: /llms.txt served as text/markdown with agent instructions (llms/urban-revivo-llms.txt); mirrored at /agents.md.
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: /.well-known/security.txt returned 404 on global.urbanrevivo.com at fetch time.
