@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/urban-revivo/integrations
+- https://n8n.io/integrations/urban-revivo/
+- https://composio.dev/toolkits/urban-revivo
+- https://monid.ai/tools/urban-revivo
+checked:
+- https://composio.dev/toolkits/urban-revivo
+- https://monid.ai/tools/urban-revivo
+- https://n8n.io/integrations/urban-revivo/
+- https://zapier.com/apps/urban-revivo/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
